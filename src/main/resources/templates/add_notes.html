@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::title},~{::body})}">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Add Notes</title>
+</head>
+
+<body>
+	<div class="container mt-4">
+		<div class="row">
+			<div class="col-md-10 offset-md-1">
+				<div class="card">
+					<div class="card-header text-center fs-4">add your notes</div>
+					<th:block th:if="${session.msg}">
+						<p class="fs-5 text-center text-success">[[${session.msg}]]</p>
+						<th:block th:text="${@userServiceImpl.removeSessionMassage()}"></th:block>
+					</th:block>
+					<div class="card-body">
+
+						<form action="saveNotes" method="post">
+							<div class="md-3">
+								<label>Enter Titile</label>
+								<input type="text" class="form-control" name="title">
+							</div>
+							<div class="md-3">
+								<label>Enter Description</label>
+								<textarea rows="6" cols="" class="form-control" name="description"></textarea>
+							</div>
+							<div class="card-header text-center">
+								<button class="btn btn-primary mt-1 col-md-4">save</button>
+							</div>
+					</div>
+					</form>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+</body>
+
+</html>

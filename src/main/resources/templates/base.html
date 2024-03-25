@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="layout(title,content)">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title th:replace="${title}"></title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+		integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+	<nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="/"><i class="fa-solid fa-book"></i>Enotes</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+					<li class="nav-item">
+						<a class="nav-link active" aria-current="page" href="/"><i
+								class="fa-solid fa-house-chimney-user"></i>Home</a>
+					</li>
+					<th:block th:if="${user!=NULL}">
+						<li class="nav-item">
+							<a class="nav-link" href="/user/addNotes"><i class="fa-regular fa-square-plus"></i>add</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/user/viewNotes"><i class="fa-solid fa-clipboard-list"></i>view</a>
+						</li>
+					</th:block>
+				</ul>
+
+				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+					<th:block th:if="${user==NULL}">
+						<li class="nav-item"><a href="register" class="btn btn-sm btn-primary"><i
+									class="fa-solid fa-user-plus"></i>Register</a></li>
+
+						<li class="nav-item"> <a href="signin" class="btn btn-sm btn-primary ms-2"><i
+									class="fa-solid fa-house-lock"></i>login</a></li>
+					</th:block>
+
+
+					<th:block th:if="${user!=NULL}">
+						<li class="nav-item"><a href="#" class="btn btn-sm btn-primary"><i
+									class="fa-solid fa-user-plus"></i>[[${user.fullName}]]</a></li>
+
+						<li class="nav-item"> <a href="/logout" class="btn btn-sm btn-primary ms-2"><i
+									class="fa-solid fa-house-lock"></i>Logout</a></li>
+
+					</th:block>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+
+	<div th:insert="${content}"></div>
+	<!--===== FOOTER =====-->
+	<footer class="footer">
+		<p class="footer__title">Sonu Nishad</p>
+		<div class="footer__social">
+			<a href="#" class="footer__icon"><i class='bx bxl-facebook'></i></a>
+			<a href="#" class="footer__icon"><i class='bx bxl-instagram'></i></a>
+			<a href="#" class="footer__icon"><i class='bx bxl-twitter'></i></a>
+		</div>
+		<p class="footer__copy">&#169; SN Solution pvt, ltd. All rigths reserved</p>
+	</footer>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>
